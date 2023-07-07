@@ -1,0 +1,12 @@
+name: CBear Actions
+run-name: CBear Workflow
+on: [push]
+jobs:
+  ubuntu-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build -t cbear:latest .
+      - name: Run the Docker image
+        run: docker run -a=STDOUT -a=STDERR cbear:latest
